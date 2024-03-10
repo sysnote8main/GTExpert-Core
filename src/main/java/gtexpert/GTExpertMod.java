@@ -53,10 +53,10 @@ public class GTExpertMod {
     public void onConstruction(FMLConstructionEvent event) {
         MinecraftForge.EVENT_BUS.register(this);
         GTELog.logger.info("starting construction event...");
-        moduleManager = GTEModuleManager.getInstance();
-        moduleManager.registerContainer(new GTEModules());
-        moduleManager.setup(event.getASMHarvestedData(), Loader.instance().getConfigDir());
-        moduleManager.onConstruction(event);
+            moduleManager = GTEModuleManager.getInstance();
+            moduleManager.registerContainer(new GTEModules());
+            moduleManager.setup(event.getASMHarvestedData(), Loader.instance().getConfigDir());
+            moduleManager.onConstruction(event);
         GTELog.logger.info("finished construction!");
     }
 
