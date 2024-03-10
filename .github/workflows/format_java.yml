@@ -36,14 +36,14 @@ jobs:
         if: ${{ failure() }}
         run: |
           git reset --hard
-          git checkout "${PR_BRANCH}"
+          git checkout -b "${FIXED_BRANCH}" "origin/${PR_BRANCH}"
           ./gradlew --info spotlessApply || exit 1
           git diff --exit-code && exit 1
           git config user.name "GitHub Actions"
           git config user.email "<>"
           git switch -c "${FIXED_BRANCH}"
           git commit -am "spotlessApply"
-          git push --force-with-lease origin "${FIXED_BRANCH}"
+          git push -u origin "${FIXED_BRANCH}"
 #          gh pr create \
 #            --head "${FIXED_BRANCH}" \
 #            --base "${PR_BRANCH}" \
