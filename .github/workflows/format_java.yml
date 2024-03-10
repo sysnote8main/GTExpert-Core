@@ -35,13 +35,11 @@ jobs:
         id: build
         run: ./gradlew --info spotlessCheck
 
-      - name: Add & Commit
+      - name: Git Auto Commit
         if: failure()
-        uses: EndBug/add-and-commit@v9.1.4
+        uses: stefanzweifel/git-auto-commit-action@v5.0.0
         with:
-          message: "spotlessApply"
-          add: "*.java"
-          new_branch: ${{ github.head_ref }}-spotless-fixes
+          commit_message: spotlessApply
 
       - name: Pull Requests
         if: failure()
