@@ -35,6 +35,10 @@ jobs:
         id: build
         run: ./gradlew --info spotlessCheck
 
+      - name: Run Spotless Apply
+        if: failure()
+        run: ./gradlew spotlessApply
+
       - name: Git Auto Commit
         if: failure()
         uses: stefanzweifel/git-auto-commit-action@v5.0.0
