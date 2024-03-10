@@ -36,6 +36,7 @@ jobs:
         run: ./gradlew --info spotlessCheck
 
       - name: Add & Commit
+        if: failure()
         uses: EndBug/add-and-commit@v9.1.4
         with:
           message: spotlessApply
@@ -44,7 +45,7 @@ jobs:
           add: "*.java"
 
       - name: Pull Requests
-        if: ${{ failure() }}
+        if: failure()
         run: |
           gh pr create \
             --head "${FIXED_BRANCH}" \
