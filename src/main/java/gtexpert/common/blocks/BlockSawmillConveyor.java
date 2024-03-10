@@ -24,11 +24,11 @@ public class BlockSawmillConveyor extends Block {
 
     public BlockSawmillConveyor() {
         super(net.minecraft.block.material.Material.IRON);
-        setTranslationKey("sawmill_conveyor");
-        setHardness(2.5f);
-        setResistance(10.0f);
-        setSoundType(SoundType.WOOD);
-        setHarvestLevel(ToolClasses.WRENCH, 1);
+            setTranslationKey("sawmill_conveyor");
+                    setHardness(2.5f);
+                    setResistance(10.0f);
+            setSoundType(SoundType.WOOD);
+            setHarvestLevel(ToolClasses.WRENCH, 1);
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 

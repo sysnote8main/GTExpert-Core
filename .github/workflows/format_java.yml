@@ -20,10 +20,9 @@ jobs:
 
     permissions:
       pull-requests: write
-      issues: write
-      repository-projects: write
-      actions: write
-      checks: write
+#      repository-projects: write
+#      actions: write
+#      checks: write
       contents: write
 
     steps:
