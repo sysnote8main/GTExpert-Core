@@ -41,7 +41,6 @@ jobs:
           git diff --exit-code && exit 1
           git config user.name "GitHub Actions"
           git config user.email "<>"
-          git switch -c "${FIXED_BRANCH}"
           git commit -am "spotlessApply"
           git push -u origin "${FIXED_BRANCH}"
 #          gh pr create \
