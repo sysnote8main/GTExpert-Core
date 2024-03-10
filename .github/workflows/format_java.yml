@@ -22,6 +22,9 @@ jobs:
       pull-requests: write
       issues: write
       repository-projects: write
+      actions: write
+      checks: write
+      contents: write
 
     steps:
       - name: Checkout Repository
@@ -42,11 +45,18 @@ jobs:
         if: failure()
         run: ./gradlew spotlessApply
 
-      - name: Git Auto Commit
+      - name: Create new branch & commit
         if: failure()
-        uses: stefanzweifel/git-auto-commit-action@v5.0.0
-        with:
-          commit_message: spotlessApply
+        run: |
+          git reset --hard
+          git checkout "${PR_BRANCH}"
+          ./gradlew --build-cache --info --stacktrace spotlessApply || exit 1
+          git diff --exit-code && exit 1
+          git config user.name "GitHub Actions"
+          git config user.email "<>"
+          git switch -c "${FIXED_BRANCH}"
+          git commit -am "spotlessApply"
+          git push --force-with-lease origin "${FIXED_BRANCH}"
 
       - name: Pull Requests
         if: failure()
